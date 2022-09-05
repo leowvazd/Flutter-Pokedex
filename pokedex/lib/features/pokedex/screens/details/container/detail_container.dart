@@ -7,14 +7,15 @@ import 'package:pokedex/common/widgets/po_loading.dart';
 import 'package:pokedex/features/pokedex/screens/details/pages/detail_page.dart';
 
 class DetailArgument {
-  DetailArgument({required this.name});
-  final String name;
+  DetailArgument({required this.pokemon});
+  final Pokemon pokemon;
 }
 
 class DetailContainer extends StatelessWidget {
   const DetailContainer(
       {Key? key, required this.repository, required this.arguments})
       : super(key: key);
+
   final IPokemonRepository repository;
   final DetailArgument arguments;
 
@@ -29,7 +30,7 @@ class DetailContainer extends StatelessWidget {
 
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {
-            return DetailPage(name: arguments.name, list: snapshot.data!);
+            return DetailPage(pokemon: arguments.pokemon, list: snapshot.data!);
           }
 
           if (snapshot.hasError) {

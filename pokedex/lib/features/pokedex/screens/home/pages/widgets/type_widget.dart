@@ -14,13 +14,17 @@ class TypeWidget extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 4.0),
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.3),
+            color: Colors.white.withOpacity(0.2),
             borderRadius: BorderRadius.circular(16)),
         child: Padding(
           padding: const EdgeInsets.all(6),
           child: Text(
             name,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 12,
+            ),
           ),
         ),
       ),
