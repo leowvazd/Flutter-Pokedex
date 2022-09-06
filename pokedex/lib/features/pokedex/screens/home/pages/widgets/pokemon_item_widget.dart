@@ -12,6 +12,7 @@ class PokemonItemWidget extends StatelessWidget {
 
   final Pokemon pokemon;
   final Function(String, DetailArgument) onTap;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
