@@ -29,19 +29,22 @@ class DetailContainer extends StatefulWidget {
 }
 
 class _DetailContainerState extends State<DetailContainer> {
-  late PageController controller;
+  late PageController _controller;
+  late Future<List<Pokemon>> _future;
+  Pokemon? _pokemon;
 
   @override
   void initState() {
-    controller = PageController(
+    _controller = PageController(
         viewportFraction: 0.5, initialPage: widget.arguments.index!);
+    _future = widget.repository.getAllPokemons();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Pokemon>>(
-        future: widget.repository.getAllPokemons(),
+        future: _future,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const PoLoading();
@@ -49,11 +52,17 @@ class _DetailContainerState extends State<DetailContainer> {
 
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {
+            _pokemon ??= widget.arguments.pokemon;
             return DetailPage(
-              pokemon: widget.arguments.pokemon,
+              pokemon: _pokemon!,
               list: snapshot.data!,
               onBack: widget.onBack,
-              controller: controller,
+              controller: _controller,
+              onChangePokemon: (Pokemon value) {
+                setState(() {
+                  _pokemon = value;
+                });
+              },
             );
           }
 
