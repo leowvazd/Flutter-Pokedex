@@ -12,18 +12,20 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: false,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFF666f88),
         centerTitle: false,
         title: const Padding(
           padding: EdgeInsets.only(left: 10),
           child: Text(
-            'Pokedex',
+            'Pokédex',
             style: TextStyle(
-              color: Colors.black,
-              fontSize: 26,
-            ),
+                color: Colors.white,
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic),
           ),
         ),
         actions: [
@@ -33,24 +35,39 @@ class HomePage extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.menu,
-                  color: Colors.black,
+                  color: Colors.white,
                 )),
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: GridView.count(
-          crossAxisCount: 2,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          children: list
-              .map((e) => PokemonItemWidget(
-                    pokemon: e,
-                    onTap: onItemTap,
-                    index: list.indexOf(e),
-                  ))
-              .toList(),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF666f88),
+              Color(0xFF788199),
+              Color(0xFF8990a2),
+              Color(0xFFa3a8b7),
+              Color(0xFFb5bac9),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: GridView.count(
+            crossAxisCount: 2,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+            children: list
+                .map((e) => PokemonItemWidget(
+                      pokemon: e,
+                      onTap: onItemTap,
+                      index: list.indexOf(e),
+                    ))
+                .toList(),
+          ),
         ),
       ),
     );
