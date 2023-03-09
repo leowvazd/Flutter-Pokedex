@@ -11,11 +11,7 @@ class Pokemon {
       name: json['name'],
       id: json['id'],
       num: json['num'],
-      type: (json['type'] as List<dynamic>)
-          .map(
-            (e) => e as String,
-          )
-          .toList(),
+      type: (json['type'] as List<dynamic>).map((e) => e as String).toList(),
     );
   }
 

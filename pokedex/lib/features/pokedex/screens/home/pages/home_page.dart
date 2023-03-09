@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
         title: const Padding(
           padding: EdgeInsets.only(left: 10),
           child: Text(
-            'Pokédex',
+            'dataDex',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 26,
